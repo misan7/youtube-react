@@ -1,8 +1,8 @@
 import React from 'react'
 
-const App = function() {
-
-  return React.createElement('p', null, "Hello World")
+const App = () => {
+  
+  return <div>Hello World!</div>
 }
 
 export default App
