@@ -3,11 +3,16 @@ import VideoItem from './components/VideoItem.js'
 
 const App = () => {
 
-  return (
-    <div>
-      <VideoItem videoId="_ghDPmAsLmY" title="DONUTS HOLE | Mi Lado Dominante de Mí"/>
-    </div>
-  )
+  const videos = [
+    { videoId: "6KxtgS2lU94", title: "Björk - Army Of Me" },
+    { videoId: "1uYWYWPc9HU", title: "Radiohead - Karma Police" },
+    { videoId: "3mbBbFH9fAg", title: "Soundgarden - Black Hole Sun" }
+  ]
+
+  const VideoItems = videos.map((v) => <VideoItem key={v.videoId} videoId={v.videoId} title={v.title}/>)
+
+  return <div>{VideoItems}</div>
+
 }
 
 export default App
