@@ -5,9 +5,7 @@ const App = () => {
 
   return (
     <div>
-      <VideoItem/>
-      <VideoItem/>
-      <VideoItem/>
+      <VideoItem videoId="_ghDPmAsLmY" title="DONUTS HOLE | Mi Lado Dominante de Mí"/>
     </div>
   )
 }
