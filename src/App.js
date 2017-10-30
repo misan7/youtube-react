@@ -1,8 +1,15 @@
 import React from 'react'
+import VideoItem from './components/VideoItem.js'
 
 const App = () => {
-  
-  return <div>Hello World!</div>
+
+  return (
+    <div>
+      <VideoItem/>
+      <VideoItem/>
+      <VideoItem/>
+    </div>
+  )
 }
 
 export default App
