@@ -1,15 +1,38 @@
-import React from 'react'
+import React, { Component } from 'react'
 import VideoList from './components/VideoList.js'
-import youtubeApiSample from './youtube-api-sample.json'
+import axios from 'axios'
+import apiKey from './youtube-api-key.json'
 
-const App = () => {
+class App extends Component {
 
-  const videos = youtubeApiSample.items
-    .filter(v => v.id.kind === "youtube#video")
-    .map(v => ({id: v.id.videoId, title: v.snippet.title}))
+	constructor(props) {
+		super(props)
 
-  return <VideoList videos={videos}></VideoList>
+		this.state = { videos: [] }
 
+		const searchApi = "https://www.googleapis.com/youtube/v3/search"
+		const queryTerm = encodeURIComponent("donuts hole")
+		const url = searchApi + "?q=" + queryTerm + "&key=" + apiKey + "&maxResults=10&part=snippet"
+
+		axios.get(url)
+			.then((response) => {
+
+				const videos = response.data.items
+					.filter(v => v.id.kind === "youtube#video")
+					.map(v => ({id: v.id.videoId, title: v.snippet.title}))
+
+				this.setState({ videos: videos })
+			})
+			.catch((error) => {
+				console.error(error)
+			})
+
+	}
+
+	render() {
+
+		return <VideoList videos={this.state.videos}></VideoList>
+	}
 }
 
 export default App
