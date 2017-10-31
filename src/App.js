@@ -51,6 +51,7 @@ class App extends Component {
 
 		return (
 			<div>
+			<p>
 				<input 
 					value= {this.state.searchTerm} 
 					placeholder="Search Video" 
@@ -60,6 +61,7 @@ class App extends Component {
 					onClick={(event) => this.searchVideos()}>
 					Search!
 				</button>
+				</p>
 				<VideoList videos={this.state.videos}></VideoList>
 			</div>
 		)
