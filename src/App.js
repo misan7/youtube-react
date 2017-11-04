@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import VideoList from './components/VideoList.js'
-import SearchForm from './components/SearchForm.js'
+import MenuBar from './components/MenuBar.js'
 import axios from 'axios'
 import apiKey from './youtube-api-key.json'
 
@@ -10,18 +10,17 @@ class App extends Component {
 		super(props)
 
 		this.state = { 
-			searchTerm: "",
 			videos: []
 		}
 	}
 
 	/* Video searching using state.searchTerm */
-	searchVideos() {
+	searchVideos(searchTerm) {
 		
-		console.log('Searching Videos:' + this.state.searchTerm)
+		console.log('Searching Videos:' + searchTerm)
 
 		const searchApi = "https://www.googleapis.com/youtube/v3/search"
-		const queryTerm = encodeURIComponent(this.state.searchTerm)
+		const queryTerm = encodeURIComponent(searchTerm)
 		const url = searchApi + "?q=" + queryTerm + "&key=" + apiKey + "&maxResults=10&part=snippet"
 
 		axios.get(url)
@@ -46,9 +45,8 @@ class App extends Component {
 
 		return (
 			<div>
-				<SearchForm 
-					placeholder = "Search Video"
-					onSend = {(value) => this.searchVideos(value)} />
+				<MenuBar 
+					onSearch = {(value) => this.searchVideos(value)} />
 				<VideoList videos={this.state.videos}></VideoList>
 			</div>
 			)
